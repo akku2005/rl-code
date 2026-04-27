@@ -1,0 +1,224 @@
+[
+  {
+    "channel": "WHATSAPP",
+    "field_mapping": {
+      "requested_time": "requested_date_time",
+      "customer_id": "mobile_number",
+      "mobile_number": "mobile_number",
+      "campaign_id": "campaign_id",
+      "campaign_name": "campaign_name",
+      "template_name": "template_name",
+      "product": "product_context",
+      "tags": "tags",
+
+      "sent_flg": "sent_flg",
+      "delivered_flg": "delivered_flg",
+      "click_flg": "click_flg",
+      "read_flg": "read_flg",
+
+      "sent_time": "sent_dt_time",
+      "delivered_time": "delivery_dt_time",
+      "read_time": "read_dt_time",
+      "click_time": "click_time",
+
+      "status": "status",
+      "message_id": "message_id",
+      "source_table": "source_table",
+      "source_data_type": "source_data_type",
+      "source_file_name": "source_file_name"
+    },
+    "force_null_fields": [
+      "email_id", "open_time", "open_flg", "journey_id", "segment_id", "user_id"
+    ],
+    "attributes": [
+      "sender_id", "conversation_id", "template_category", "conversation_category",
+      "error_description", "channel_error_description", "src_insert_timestamp",
+      "insert_timestamp", "last_activity", "message_text", "requested_date_time"
+    ]
+  },
+
+  {
+    "channel": "BPN",
+    "field_mapping": {
+      "requested_time": "bpn_date",
+      "customer_id": "cust_id",
+      "mobile_number": "mobile",
+      "email_id": "email",
+      "campaign_id": "broadcast_id",
+      "campaign_name": "campaign_name",
+      "template_name": "notification_title",
+      "product": null,
+      "tags": "campaign_tags",
+
+      "sent_flg": "sent_flg",
+      "delivered_flg": "delivered_flg",
+      "click_flg": "click_flg",
+
+      "sent_time": "publish_date",
+      "delivered_time": "delivery_date",
+      "click_time": "click_date",
+
+      "status": "status",
+      "source_table": "source_table",
+      "source_data_type": "source_data_type",
+      "source_file_name": "source_file_name"
+    },
+    "force_null_fields": [
+      "open_time", "read_time", "open_flg", "read_flg", "segment_id", "message_id"
+    ],
+    "attributes": [
+      "last_activity", "contact_type", "notification_message", "campaign_executor",
+      "device", "os", "browser", "journey_id", "batch_id", "insert_timestamp",
+      "src_insert_timestamp"
+    ]
+  },
+
+  {
+    "channel": "APN",
+    "field_mapping": {
+      "requested_time": "apn_date",
+      "customer_id": "cust_id",
+      "mobile_number": "mobile",
+      "campaign_id": "broadcast_id",
+      "campaign_name": "campaign_name",
+      "template_name": "notification_title",
+      "product": null,
+      "tags": "campaign_tags",
+
+      "sent_flg": "sent_flg",
+      "delivered_flg": "delivered_flg",
+      "click_flg": "click_flg",
+
+      "sent_time": "publish_date",
+      "delivered_time": "delivery_date",
+      "click_time": "click_date",
+
+      "status": "status",
+      "source_table": "source_table",
+      "source_data_type": "source_data_type",
+      "source_file_name": "source_file_name"
+    },
+    "force_null_fields": [
+      "email_id", "open_time", "read_time", "open_flg", "read_flg", "segment_id", "message_id"
+    ],
+    "attributes": [
+      "last_activity", "contact_type", "token", "notification_message", "campaign_executor",
+      "sdk_version", "app_version", "os_version", "make", "model", "journey_id",
+      "batch_id", "insert_timestamp", "src_insert_timestamp"
+    ]
+  },
+
+  {
+    "channel": "GRCS",
+    "field_mapping": {
+      "requested_time": "requested_date_time",
+      "customer_id": "cust_id",
+      "mobile_number": "mobile",
+      "campaign_id": "campaign_id",
+      "campaign_name": "campaign_name",
+      "template_name": "template_name",
+      "product": "product",
+      "tags": "tags",
+
+      "sent_flg": "sent_flg",
+      "delivered_flg": "delivered_flg",
+      "click_flg": "click_flg",
+      "read_flg": "read_flg",
+
+      "sent_time": "sent_dt_time",
+      "delivered_time": "delivery_dt_time",
+      "read_time": "read_dt_time",
+      "click_time": "click_time",
+
+      "status": "status",
+      "message_id": "message_id",
+      "source_table": "source_table",
+      "source_data_type": "source_data_type",
+      "source_file_name": "source_file_name"
+    },
+    "force_null_fields": [
+      "open_time", "open_flg", "email_id"
+    ],
+    "attributes": [
+      "sender_id", "conversation_id", "template_category", "conversation_category",
+      "error_description", "channel_error_description", "src_insert_timestamp",
+      "grcs_flag", "message_text", "journey_id", "segment_id"
+    ]
+  },
+
+  {
+    "channel": "EMAIL",
+    "field_mapping": {
+      "requested_time": "sent_date",
+      "customer_id": "cust_id",
+      "mobile_number": "mobile",
+      "email_id": "email",
+      "campaign_id": "campaign_id",
+      "campaign_name": "campaign_name",
+      "template_name": "template_name",
+      "product": "product",
+      "tags": "tags",
+
+      "sent_flg": "sent_flg",
+      "open_flg": "open_flg",
+      "click_flg": "click_flg",
+
+      "sent_time": "sent_date",
+      "open_time": "open_date",
+      "click_time": "click_date",
+
+      "status": "status",
+      "message_id": "message_id",
+      "source_table": "source_table",
+      "source_data_type": "source_data_type",
+      "source_file_name": "source_file_name"
+    },
+    "force_null_fields": [
+      "read_time", "read_flg", "delivered_time", "delivered_flg"
+    ],
+    "attributes": [
+      "publish_date", "owner", "subject", "domain", "template_id", "list_id",
+      "list_name", "journey_name", "clicks", "link", "os", "browser",
+      "bounce_reason", "unsub_reason", "abuse_reason", "segment_id", "journey_id"
+    ]
+  },
+
+  {
+    "channel": "SMS",
+    "field_mapping": {
+      "requested_time": "sent_date",
+      "customer_id": "cust_id",
+      "mobile_number": "mobile_number",
+      "email_id": "email",
+      "campaign_id": "broadcast_id",
+      "campaign_name": "campaign_name",
+      "template_name": "template_name",
+      "product": "product",
+      "tags": "tags",
+
+      "sent_flg": "sent_flg",
+      "delivered_flg": "delivered_flg",
+      "click_flg": "click_flg",
+
+      "sent_time": "sent_date",
+      "delivered_time": "delivery_date",
+      "click_time": "click_date",
+
+      "status": "status",
+      "source_table": "source_table",
+      "source_data_type": "source_data_type",
+      "source_file_name": "source_file_name"
+    },
+    "force_null_fields": [
+      "open_time", "read_time", "open_flg", "read_flg", "message_id"
+    ],
+    "attributes": [
+      "publish_date", "src_insert_date", "src_update_date", "insert_date", "sent_month",
+      "message", "sender_id", "segment_name", "campaign_tag", "clicked_time",
+      "url", "full_url", "device", "os", "browser", "sender_domain",
+      "operator", "reason", "owner", "circle", "sender_name",
+      "trust_signal_messageid", "template_id", "karix_mid", "karix_campaign_file_name",
+      "journey_id", "segment_id"
+    ]
+  }
+]

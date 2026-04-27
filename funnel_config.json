@@ -1,0 +1,39 @@
+{
+  "use_case_id": "pl-aip-uplift",
+  "funnel_stages": [
+    { "position": 1,  "event": "campaign_delivered",              "stage": "delivery" },
+    { "position": 2,  "event": "campaign_open",                   "stage": "engagement" },
+    { "position": 3,  "event": "campaign_click",                  "stage": "engagement" },
+    { "position": 4,  "event": "landing_page_view",               "stage": "consideration",    "notes": "Deep link traffic — user lands directly on PL landing page" },
+    { "position": 4,  "event": "homepage_view",                   "stage": "consideration",    "notes": "Generic traffic — user lands on Homepage, navigates via PDP/CLP to landing page" },
+    { "position": 5,  "event": "language_selected",               "stage": "consideration",    "notes": "Optional step — user changes journey language from top-right dropdown" },
+    { "position": 6,  "event": "profession_selected",             "stage": "consideration",    "notes": "User selects from: Salaried / Self Employed / Doctor / CA / CS / CWA" },
+    { "position": 7,  "event": "mobile_number_entered",           "stage": "consideration" },
+    { "position": 8,  "event": "pincode_entered",                 "stage": "consideration" },
+    { "position": 9,  "event": "consent_selected",                "stage": "consideration",    "notes": "2 mandatory checkboxes: (1) ToU + Privacy Policy + CIBIL Consent; (2) 3rd Party Data Sharing Consent" },
+    { "position": 10, "event": "application_created_otp_triggered", "stage": "application",   "notes": "10% — Application creation milestone triggered at OTP initiation" },
+    { "position": 11, "event": "otp_entered",                     "stage": "application" },
+    { "position": 12, "event": "application_created_otp_submitted", "stage": "application",   "notes": "User clicks Submit after OTP entry" },
+    { "position": 13, "event": "profile_details_page_view",       "stage": "application",      "notes": "20% — Application moves to profileDetails page" },
+    { "position": 14, "event": "pan_entered",                     "stage": "application" },
+    { "position": 15, "event": "personal_details_entered",        "stage": "application",      "notes": "Full Name, DOB (DD/MM/YYYY), Personal Email ID" },
+    { "position": 16, "event": "employer_type_selected",          "stage": "application",      "notes": "Options: (1) Private/Public/LLP/University/School; (2) Proprietorship/Partnership; (3) Government" },
+    { "position": 17, "event": "company_name_entered",            "stage": "application" },
+    { "position": 18, "event": "net_monthly_salary_entered",      "stage": "application" },
+    { "position": 19, "event": "eligibility_check_clicked",       "stage": "application",      "notes": "User clicks 'Check Eligibility' — triggers Bureau pull and BRE at backend" },
+    { "position": 20, "event": "connection_error",                "stage": "negative_outcome", "notes": "31% — Network/bureau connection error during eligibility check" },
+    { "position": 21, "event": "credit_check_completed",          "stage": "approval",         "notes": "Bureau pull + BRE executed; outcome determines next stage" },
+    { "position": 22, "event": "application_rejected",            "stage": "negative_outcome", "notes": "45% — User rejected post Bureau pull / BRE" },
+    { "position": 23, "event": "offer_viewed",                    "stage": "approval",         "notes": "50% — User is not rejected; moved to Loan Listing Page" },
+    { "position": 24, "event": "partner_card_selected",           "stage": "conversion",       "notes": "55% — Push to Partner — User selects a partner lending card they are interested in" }
+  ],
+  "application_progress_milestones": {
+    "application_created_otp_triggered": "10%",
+    "application_created_otp_submitted": "20%",
+    "connection_error":                  "31%",
+    "application_rejected":              "45%",
+    "offer_viewed":                      "50%",
+    "partner_card_selected":             "55%"
+  },
+  "avg_conversion_value": 129905
+}

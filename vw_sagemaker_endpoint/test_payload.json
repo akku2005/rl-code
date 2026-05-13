@@ -1,0 +1,42 @@
+{
+  "use_case_id": "pl-aip-uplift",
+  "master_user_id": "6000001050",
+  "context": {
+    "city_tier": "tier1",
+    "income_tier": "mid",
+    "risk_level": "low",
+    "current_cibil": 720,
+    "fatigue_score": 3.2,
+    "opens_30d": 2,
+    "clicks_30d": 1,
+    "days_since_last_contact": 14,
+    "v0": 0.123,
+    "v1": -0.44,
+    "v2": 0.91,
+    "v3": 0.07
+  },
+  "candidate_actions": [
+    {
+      "action_id": "A001",
+      "channel_id": "CH001",
+      "channel_name": "WhatsApp",
+      "frequency_id": "FR001",
+      "day_id": "DW001",
+      "offer_id": "OF001",
+      "creative_id": "CR001",
+      "time_bucket_id": "TM002",
+      "channel_cost": 0.39
+    },
+    {
+      "action_id": "A002",
+      "channel_id": "CH002",
+      "channel_name": "SMS",
+      "frequency_id": "FR001",
+      "day_id": "DW001",
+      "offer_id": "OF001",
+      "creative_id": "CR002",
+      "time_bucket_id": "TM002",
+      "channel_cost": 0.12
+    }
+  ]
+}

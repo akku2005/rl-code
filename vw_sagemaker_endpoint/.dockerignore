@@ -1,0 +1,13 @@
+*.ipynb
+*.docx
+*.csv
+*.parquet
+*.pkl
+*.vw
+*.tar.gz
+model_artifact/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.env
+.git

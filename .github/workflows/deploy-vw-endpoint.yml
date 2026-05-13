@@ -1,0 +1,92 @@
+name: Deploy VW SageMaker Endpoint
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "vw_sagemaker_endpoint/**"
+      - ".github/workflows/deploy-vw-endpoint.yml"
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: ap-south-1
+  ECR_REPOSITORY: vw-rl-endpoint
+  ENDPOINT_NAME: vw-pl-aip-uplift-endpoint
+  MODEL_S3_PATH: s3://aks-nvtabular-data/models/pl-aip-uplift/model.tar.gz
+  INSTANCE_TYPE: ml.m5.large
+  INSTANCE_COUNT: "1"
+
+jobs:
+  deploy:
+    name: Build and deploy SageMaker endpoint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Create ECR repository if missing
+        run: |
+          aws ecr describe-repositories --repository-names "$ECR_REPOSITORY" >/dev/null 2>&1 || \
+          aws ecr create-repository \
+            --repository-name "$ECR_REPOSITORY" \
+            --image-scanning-configuration scanOnPush=true \
+            --encryption-configuration encryptionType=AES256
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build Docker image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          IMAGE_URI="$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          docker build -t "$IMAGE_URI" vw_sagemaker_endpoint
+          echo "IMAGE_URI=$IMAGE_URI" >> "$GITHUB_ENV"
+
+      - name: Push Docker image
+        run: |
+          docker push "$IMAGE_URI"
+
+      - name: Validate S3 model artifact exists
+        run: |
+          aws s3 ls "$MODEL_S3_PATH"
+
+      - name: Install deployment dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install boto3
+
+      - name: Deploy SageMaker endpoint
+        env:
+          IMAGE_URI: ${{ env.IMAGE_URI }}
+          MODEL_S3_PATH: ${{ env.MODEL_S3_PATH }}
+          SAGEMAKER_ROLE_ARN: ${{ secrets.SAGEMAKER_ROLE_ARN }}
+          ENDPOINT_NAME: ${{ env.ENDPOINT_NAME }}
+          INSTANCE_TYPE: ${{ env.INSTANCE_TYPE }}
+          INSTANCE_COUNT: ${{ env.INSTANCE_COUNT }}
+          AWS_REGION: ${{ env.AWS_REGION }}
+        run: |
+          python vw_sagemaker_endpoint/deploy_endpoint_ci.py
+
+      - name: Invoke endpoint with test payload
+        run: |
+          aws sagemaker-runtime invoke-endpoint \
+            --endpoint-name "$ENDPOINT_NAME" \
+            --content-type application/json \
+            --body fileb://vw_sagemaker_endpoint/test_payload.json \
+            response.json
+          cat response.json

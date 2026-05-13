@@ -1,0 +1,7 @@
+vowpalwabbit
+fastapi
+uvicorn
+gunicorn
+pydantic
+numpy
+boto3
